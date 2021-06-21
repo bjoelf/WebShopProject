@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebShopProjectApp.Orders
+namespace WebShopProjectApp.ViewModels
 {
-    public class Order
+    public class CreateProduct
     {
-        List<OrderItem> items { get; set; }
+
     }
 }

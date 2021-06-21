@@ -1,0 +1,5 @@
+﻿
+Ulf 2021-06-18:
+Måste ha en views mapp med undermappar med samma namn som controllerns namn.
+Shared view mappen läggs de views som anväds av fler än en controller!
+
