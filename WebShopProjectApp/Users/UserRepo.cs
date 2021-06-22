@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebShopProjectApp.Products;
-using WebShopProjectApp.Users;
 
-namespace WebShopProjectApp.Orders
+namespace WebShopProjectApp.Users
 {
-    public class OrderRepo : IOrderRepo
+    public class UserRepo : IUserRepo
     {
-        public Order Create(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order Create(AppUser appUser)
+        public User Create(User user)
         {
             throw new NotImplementedException();
         }
@@ -24,17 +17,17 @@ namespace WebShopProjectApp.Orders
             throw new NotImplementedException();
         }
 
-        public Order Edit(Order order)
+        public User Edit(User user)
         {
             throw new NotImplementedException();
         }
 
-        public Order Read(int id)
+        public User Read(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> Read()
+        public List<User> Read()
         {
             throw new NotImplementedException();
         }

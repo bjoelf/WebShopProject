@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-using WebShopProjectApp.Customers;
+using WebShopProjectApp.Users;
 using WebShopProjectApp.Products;
 using WebShopProjectApp.Orders;
 

@@ -10,7 +10,7 @@ namespace WebShopProjectApp.ViewModels
     public class CreateOrder
     {
         List<OrderItem> orderItems { get; set; }
-        AppUser appUser { get; set; }
+        User appUser { get; set; }
     }
 }
 

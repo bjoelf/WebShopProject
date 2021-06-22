@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using WebShopProjectApp.Products;
+using WebShopProjectApp.Users;
+
 
 namespace WebShopProjectApp.Orders
 {
-    interface IOrderRepo
+    public interface IOrderRepo
     {
-        Order Create(Product product);
+        Order Create(AppUser appUser);
         Order Read(int id);
         List<Order> Read();
         Order Edit(Order order);

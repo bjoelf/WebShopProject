@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebShopProjectApp.Users
 {
-    public class AppUser : IdentityUser
+    public class User : IdentityUser
     {
+        // Key/Id i basklassen
+
         [Required]
         [Display(Name = "First Name")]
         [StringLength(30, MinimumLength = 2)]

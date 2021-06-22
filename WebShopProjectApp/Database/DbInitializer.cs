@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-using WebShopProjectApp.Customers;
+using WebShopProjectApp.Users;
 
 namespace WebShopProjectApp.Database
 {
