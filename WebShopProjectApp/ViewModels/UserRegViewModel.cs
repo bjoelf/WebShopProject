@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
 
-namespace WebShopProjectApp.Users
+namespace WebShopProjectApp.ViewModels
 {
-    public class User : IdentityUser
+    public class UserRegViewModel
     {
-        // Key/Id + email i basklassen (IdentityUser)
+        [Required]
+        [StringLength(30, MinimumLength =5)]
+        public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
         [StringLength(30, MinimumLength = 2)]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Last Name")]
         [StringLength(30, MinimumLength = 2)]
         public string LastName { get; set; }
 
@@ -32,12 +31,20 @@ namespace WebShopProjectApp.Users
         public string StreetNumber { get; set; }
 
         [Required]
-        [Display(Name = "Postal Code")]
-        [StringLength(10, MinimumLength = 5)]
-        public string PostalCode { get; set; }
+        [StringLength(50, MinimumLength = 5)]
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
 
         [Required]
-        [StringLength(30, MinimumLength = 2)]
-        public string City { get; set; }
+        [DataType(DataType.Password)]
+        [StringLength(60, MinimumLength = 6)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare("Password")]
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
     }
 }

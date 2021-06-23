@@ -1,0 +1,30 @@
+﻿@model List<IdentityRole>
+@{
+    ViewData["Title"] = "RoleList";
+}
+
+<h1>Role List</h1>
+
+<a asp-action="CreateRole" asp-controller="Admin">Create Role</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "RemoveRole", "Admin", new { roleName = item.Name })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

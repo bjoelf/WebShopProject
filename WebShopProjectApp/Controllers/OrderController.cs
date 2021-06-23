@@ -5,35 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebShopProjectApp.Products
+namespace WebShopProjectApp.Controllers
 {
-    public class ProductsController : Controller
+    public class OrderController : Controller
     {
-        private readonly IProductService _productService;
-
-        public ProductsController(IProductService productService)
-        {
-            _productService = productService;
-        }
-        // GET: ProductsController
+        // GET: OrderController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: ProductsController/Details/5
+        // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ProductsController/Create
+        // GET: OrderController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductsController/Create
+        // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -48,13 +42,13 @@ namespace WebShopProjectApp.Products
             }
         }
 
-        // GET: ProductsController/Edit/5
+        // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductsController/Edit/5
+        // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -69,13 +63,13 @@ namespace WebShopProjectApp.Products
             }
         }
 
-        // GET: ProductsController/Delete/5
+        // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductsController/Delete/5
+        // POST: OrderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

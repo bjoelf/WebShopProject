@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAppMVCbasics2app.Controllers
+namespace WebShopProjectApp.Controllers
 {
     public class HomeController : Controller
     {
