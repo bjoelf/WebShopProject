@@ -16,17 +16,31 @@ namespace WebShopProjectApp.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        public AdminController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
 
         // GET: AdminController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
 
         // GET: AdminController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult UserList()
         {
-            return View();
+            return View(_userManager.Users.ToList());
+        }
+        public async Task<IActionResult> Details(string id)
+        {
+            IdentityUser userFound = await _userManager.FindByIdAsync(id);
+
+            if (userFound == null)
+                return RedirectToAction(nameof(UserList));
+
+            return View(userFound);
         }
 
         // GET: AdminController/Create
@@ -39,48 +53,6 @@ namespace WebShopProjectApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdminController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdminController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {

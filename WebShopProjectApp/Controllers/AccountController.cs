@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
 using WebShopProjectApp.Users;
+using WebShopProjectApp.ViewModels;
 
 namespace WebShopProjectApp.Controllers
 {
     public class AccountController : Controller
     {
-    private readonly UserManager<User> _userManager;
-    private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -22,79 +23,66 @@ namespace WebShopProjectApp.Controllers
             _signInManager = signInManager;
         }
 
-        // GET: AccountController
-        public ActionResult Index()
+        [HttpGet]
+        public IActionResult Register()
         {
             return View();
         }
-
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Register(UserRegViewModel userReg)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                User newUsr = new User()
+                {
+                    //TODO: Add fileds from user class.
+                    UserName = userReg.UserName,
+                    FirstName = userReg.FirstName,
+                    LastName = userReg.LastName,
+                    Email = userReg.Email,
+                    PhoneNumber = userReg.Phone
+                };
+                IdentityResult res = await _userManager.CreateAsync(newUsr, userReg.Password);
+
+                if (res.Succeeded)
+                    return RedirectToAction("Index", "Home");
+
+                foreach (var item in res.Errors)
+                    ModelState.AddModelError(item.Code, item.Description);
             }
-            catch
-            {
-                return View();
-            }
+            return View(userReg);
         }
 
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult Logon()
         {
             return View();
         }
 
-        // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Logon(LogonViewModel logUser)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                Microsoft.AspNetCore.Identity.SignInResult res = await _signInManager.PasswordSignInAsync(logUser.UserName, logUser.Password, false, false);
+
+                if (res.Succeeded)
+                    return RedirectToAction("Index", "Home");
+
+                if (res.IsLockedOut)
+                    ModelState.AddModelError("Locked out!", "Too many attemts");
             }
-            catch
-            {
-                return View();
-            }
+            return View(logUser);
         }
 
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize]
+        public async Task<IActionResult> Logout()
         {
-            return View();
-        }
-
-        // POST: AccountController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
