@@ -6,7 +6,7 @@ using WebShopProjectApp.ViewModels;
 
 namespace WebShopProjectApp.Orders
 {
-    interface IOrderService
+    public interface IOrderService
     {
         Order Add(CreateOrder createOrder);
         List<Order> All();

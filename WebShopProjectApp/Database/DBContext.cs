@@ -14,10 +14,9 @@ namespace WebShopProjectApp.Database
     public class DBContext : IdentityDbContext<User>
     {
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
-
-        public DbSet<User> appUsers { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<User> appUsers { get; set; }
     }
 }
 
