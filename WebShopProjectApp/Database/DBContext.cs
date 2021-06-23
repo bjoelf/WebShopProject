@@ -11,11 +11,11 @@ using WebShopProjectApp.Orders;
 
 namespace WebShopProjectApp.Database
 {
-    public class DBContext : IdentityDbContext<AppUser>
+    public class DBContext : IdentityDbContext<User>
     {
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
-        public DbSet<AppUser> appUsers { get; set; }
+        public DbSet<User> appUsers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
     }

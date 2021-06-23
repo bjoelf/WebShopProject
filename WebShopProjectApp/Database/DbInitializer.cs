@@ -11,7 +11,7 @@ namespace WebShopProjectApp.Database
 {
     public class DBInitializer
     {
-        public static void Initialize(DBContext context, RoleManager<IdentityRole> roleManager, UserManager<AppUser> appUser) 
+        public static void Initialize(DBContext context, RoleManager<IdentityRole> roleManager, UserManager<User> appUser) 
         {
             context.Database.Migrate();
 
@@ -31,7 +31,7 @@ namespace WebShopProjectApp.Database
             }
 
             //Seed admin ------------------------
-            AppUser user = new AppUser()
+            User user = new User()
             {
                 UserName = "AdminSeeding",
                 FirstName = "Super",

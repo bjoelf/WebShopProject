@@ -9,12 +9,7 @@ namespace WebShopProjectApp.Orders
 {
     public class OrderRepo : IOrderRepo
     {
-        public Order Create(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order Create(AppUser appUser)
+        public Order Create(Order order)
         {
             throw new NotImplementedException();
         }

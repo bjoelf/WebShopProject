@@ -11,7 +11,7 @@ namespace WebShopProjectApp.Orders
 {
     public interface IOrderRepo
     {
-        Order Create(AppUser appUser);
+        Order Create(Order order);
         Order Read(int id);
         List<Order> Read();
         Order Edit(Order order);
