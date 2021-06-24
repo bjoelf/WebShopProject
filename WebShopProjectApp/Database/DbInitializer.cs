@@ -9,7 +9,7 @@ using WebShopProjectApp.Users;
 
 namespace WebShopProjectApp.Database
 {
-    public class DBInitializer
+    internal class DbInitializer
     {
         public static void Initialize(DBContext context, RoleManager<IdentityRole> roleManager, UserManager<User> appUser) 
         {
