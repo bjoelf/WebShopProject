@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Views\Users\" />
     <Folder Include="Views\Orders\" />
-    <Folder Include="Views\Products\" />
   </ItemGroup>
 
 </Project>

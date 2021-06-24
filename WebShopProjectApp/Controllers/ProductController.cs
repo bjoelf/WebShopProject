@@ -5,20 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShopProjectApp.Products;
+using WebShopProjectApp.ViewModels;
 
 namespace WebShopProjectApp.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
         }
 
-        public ActionResult Index()
+        [HttpGet]
+        public IActionResult Index()
         {
-            return View();
+            return View(_productService.All());
         }
 
         public ActionResult Details(int id)
@@ -26,23 +28,21 @@ namespace WebShopProjectApp.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(CreateProduct createProduct)
         {
-            try
+            if (ModelState.IsValid)
             {
+                _productService.Add(createProduct);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(createProduct);
         }
 
         public ActionResult Edit(int id)

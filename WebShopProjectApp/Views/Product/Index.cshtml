@@ -1,0 +1,31 @@
+﻿@model List<WebShopProjectApp.Products.Product> 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product management</h1>
+
+
+<h4>Add Product</h4>
+<a asp-action="Create">Create Product</a>
+
+
+<h4>Products list</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>City </th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prod in Model)
+        {
+        <tr>
+            <td>@prod.Name</td>
+            <td>@prod.Desciption</td>
+        </tr>
+        }
+    </tbody>
+</table>

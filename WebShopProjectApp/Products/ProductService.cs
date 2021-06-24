@@ -8,29 +8,47 @@ namespace WebShopProjectApp.Products
 {
     public class ProductService : IProductService
     {
+        private readonly IProductRepo _productRepo;
+        public ProductService(IProductRepo productRepo)
+        {
+            _productRepo = productRepo;
+        }
         public Product Add(CreateProduct createProduct)
         {
-            throw new NotImplementedException();
+            Product p = new Product();
+
+            p.Name = createProduct.Name;
+            p.Desciption = createProduct.Desciption;
+
+            return _productRepo.Create(p);
         }
 
         public List<Product> All()
         {
-            throw new NotImplementedException();
+            return _productRepo.Read();
         }
-
-        public Product Edit(int id, CreateProduct createProduct)
-        {
-            throw new NotImplementedException();
-        }
-
         public Product FindById(int id)
         {
-            throw new NotImplementedException();
+            return _productRepo.Read(id);
+        }
+        
+        public Product Edit(int id, CreateProduct cp)
+        {
+            Product p = FindById(id);
+            if (p == null)
+                return null;
+
+            p.Name = cp.Name;
+            p.Desciption = cp.Desciption;
+
+            p = _productRepo.Edit(p);
+
+            return p;
         }
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            return _productRepo.Delete(id);
         }
     }
 }

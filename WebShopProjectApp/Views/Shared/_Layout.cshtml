@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebAppMVCbasics2app</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The sweetest webshop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,18 +37,31 @@
                             @if (User.IsInRole("Admin"))
                             {
 
-                                @* Addes link to Languages index page here... *@
+                                @* Link to Product index page here...
+                                    
+                                    
+                                    *@
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products management</a>
+                                </li>
+
+                               
+
+                                @* Added link to Languages index page here... 
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Languages" asp-action="Index">Languages!</a>
                                 </li>
-                                @* Addes link to Cities index page here... *@
+
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Index">Cities!</a>
                                 </li>
-                                @* Addes link to Countries index page here... *@
+                       
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Countries!</a>
                                 </li>
+
+                                  *@
+                                
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin zone</a>
                                 </li>
@@ -56,7 +69,7 @@
                         }
                         else
                         {
-                            //Logon menyu diseapear for loged on users
+                            //Logon menyu disseapear for loged on users
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logon">Login</a>
                             </li>
