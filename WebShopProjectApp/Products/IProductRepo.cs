@@ -10,7 +10,7 @@ namespace WebShopProjectApp.Products
         Product Create(Product product);
         Product Read(int id);
         List<Product> Read();
-        Product Edit(Product product);
+        Product Update(Product product);
         bool Delete(int id);
     }
 }

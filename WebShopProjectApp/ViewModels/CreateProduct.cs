@@ -10,6 +10,6 @@ namespace WebShopProjectApp.ViewModels
 
         [Required]
         [MaxLength(100)]
-        public string Desciption { get; set; }
+        public string Description { get; set; }
     }
 }

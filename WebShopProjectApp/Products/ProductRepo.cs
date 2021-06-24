@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 using WebShopProjectApp.Database;
 
@@ -16,27 +14,51 @@ namespace WebShopProjectApp.Products
         }
         public Product Create(Product product)
         {
-            throw new NotImplementedException();
-        }
+            _dBContext.Add(product);
+            int ret = _dBContext.SaveChanges();
+            if (ret == 0)
+                return null;
 
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
+            return product;
         }
-
-        public Product Edit(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product Read(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Product> Read()
         {
-            throw new NotImplementedException();
+            if (_dBContext.Products.Count() > 0)
+                return _dBContext.Products.ToList();
+            return null;
+        }
+        public Product Read(int id)
+        {
+            return _dBContext.Products.Find(id);
+        }
+        public Product Update(Product product)
+        {
+            Product p = Read(product.Id);
+
+            if (p == null)
+                return null;
+
+            _dBContext.Update(p);
+            int res = _dBContext.SaveChanges();
+
+            if (res == 0)
+                return null;
+
+            return p;
+        }
+        public bool Delete(int id)
+        {
+            Product p = Read(id);
+
+            if (p == null)
+                return false;
+            _dBContext.Products.Remove(p);
+            int res = _dBContext.SaveChanges();
+
+            if (res == 0)
+                return false;
+
+            return true;
         }
     }
 }

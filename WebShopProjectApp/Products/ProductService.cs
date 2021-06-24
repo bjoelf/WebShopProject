@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 using WebShopProjectApp.ViewModels;
 
 namespace WebShopProjectApp.Products
@@ -18,11 +17,10 @@ namespace WebShopProjectApp.Products
             Product p = new Product();
 
             p.Name = createProduct.Name;
-            p.Desciption = createProduct.Desciption;
+            p.Description = createProduct.Description;
 
             return _productRepo.Create(p);
         }
-
         public List<Product> All()
         {
             return _productRepo.Read();
@@ -31,7 +29,6 @@ namespace WebShopProjectApp.Products
         {
             return _productRepo.Read(id);
         }
-        
         public Product Edit(int id, CreateProduct cp)
         {
             Product p = FindById(id);
@@ -39,13 +36,12 @@ namespace WebShopProjectApp.Products
                 return null;
 
             p.Name = cp.Name;
-            p.Desciption = cp.Desciption;
+            p.Description = cp.Description;
 
-            p = _productRepo.Edit(p);
+            p = _productRepo.Update(p);
 
             return p;
         }
-
         public bool Remove(int id)
         {
             return _productRepo.Delete(id);
