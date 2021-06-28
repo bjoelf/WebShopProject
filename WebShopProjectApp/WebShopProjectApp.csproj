@@ -25,8 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Users\" />
-    <Folder Include="Views\Orders\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
 
 </Project>

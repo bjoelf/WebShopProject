@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-
 using WebShopProjectApp.Products;
 
 namespace WebShopProjectApp.ViewModels
 {
-    public class EditProduct
+    public class EditUser
     {
         public int Id { set; get; }
-        public CreateProduct CreateProduct { set; get; }
+        public CreateUser createUser { set; get; }
     }
 }
