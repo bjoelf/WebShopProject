@@ -45,42 +45,50 @@ namespace WebShopProjectApp.Controllers
             return View(createProduct);
         }
 
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
-            return View();
+            Product p = _productService.FindById(id);
+
+            if (p == null)
+                return RedirectToAction("Index");
+
+            EditProduct editProduct = new EditProduct();
+            editProduct.Id = id;
+            editProduct.CreateProduct = new CreateProduct()
+            {
+                Name = p.Name,
+                Description = p.Description,
+            };
+            return View(editProduct);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, CreateProduct createProduct)
         {
-            try
+            if (ModelState.IsValid)
             {
+                Product p = _productService.Edit(id, createProduct);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            EditProduct editProduct = new EditProduct() {
+                Id = id,
+                CreateProduct = createProduct,
+            };
+            return View(editProduct);
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
+            Product p = _productService.FindById(id);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
+            if (p == null)
             {
-                return RedirectToAction(nameof(Index));
+                return Ok();
             }
-            catch
-            {
-                return View();
-            }
+
+            return BadRequest();
         }
     }
 }

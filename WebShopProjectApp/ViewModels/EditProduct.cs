@@ -10,14 +10,5 @@ namespace WebShopProjectApp.ViewModels
     {
         public int Id { set; get; }
         public CreateProduct CreateProduct { set; get; }
-        public EditProduct(int id, Product product)
-        {
-            Id = id;
-            this.CreateProduct = new CreateProduct() 
-            {
-                Name = product.Name, 
-                Description = product.Description 
-            };
-        }
     }
 }

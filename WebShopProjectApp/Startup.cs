@@ -26,7 +26,6 @@ namespace WebShopProjectApp
         {
             Configuration = configuration;
         }
-
         public void ConfigureServices(IServiceCollection services)
         {
             //******************************** Database connection ***********************************
@@ -50,7 +49,6 @@ namespace WebShopProjectApp
             services.AddSwaggerGen();
             services.AddMvc();
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

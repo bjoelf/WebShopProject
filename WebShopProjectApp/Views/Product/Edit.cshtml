@@ -8,9 +8,15 @@
 
 <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
 
+    <label asp-for="CreateProduct.Name"></label>
     <input asp-for="CreateProduct.Name" placeholder="Name" />
+    <span asp-validation-for="CreateProduct.Name"></span>
+
+    <label asp-for="CreateProduct.Description"></label>
     <input asp-for="CreateProduct.Description" placeholder="Description" />
-    <button>Save</button>
+
+    <input type="submit" value="Save" />
+    @* <button>Save</button> *@
 </form>
 
 <div>
