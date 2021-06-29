@@ -1,0 +1,25 @@
+﻿@model EditOrder
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit a user</h1>
+
+@* User!  *@
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+
+    <label asp-for="Customer.FirstName"></label>
+    <label asp-for="Customer.LastName"></label>
+    <label asp-for="Customer.UserName"></label>
+
+
+
+    <input type="submit" value="Save" />
+    @* <button>Save</button> *@
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
