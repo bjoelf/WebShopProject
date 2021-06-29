@@ -2,36 +2,67 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using WebShopProjectApp.Products;
 using WebShopProjectApp.Users;
+using WebShopProjectApp.Database;
 
 namespace WebShopProjectApp.Orders
 {
     public class OrderRepo : IOrderRepo
     {
+        private readonly DBContext _dBContext;
+        public OrderRepo(DBContext dBContext)
+        {
+            _dBContext = dBContext;
+        }
         public Order Create(Order order)
         {
-            throw new NotImplementedException();
-        }
+            _dBContext.Add(order);
+            int ret = _dBContext.SaveChanges();
+            if (ret == 0)
+                return null;
 
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
+            return order;
         }
-
-        public Order Edit(Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order Read(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Order> Read()
         {
-            throw new NotImplementedException();
+            if (_dBContext.Orders.Count() > 0)
+                return _dBContext.Orders.ToList();
+            return null;
+        }
+        public Order Read(int id)
+        {
+            return _dBContext.Orders.Find(id);
+        }
+        public Order Update(Order order)
+        {
+            Order o = Read(order.Id);
+
+            if (o == null)
+                return null;
+
+            _dBContext.Update(o);
+            int res = _dBContext.SaveChanges();
+
+            if (res == 0)
+                return null;
+
+            return o;
+        }
+        public bool Delete(int id)
+        {
+            Order o = Read(id);
+
+            if (o == null)
+                return false;
+            _dBContext.Orders.Remove(o);
+            int res = _dBContext.SaveChanges();
+
+            if (res == 0)
+                return false;
+
+            return true;
         }
     }
 }

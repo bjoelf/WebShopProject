@@ -37,10 +37,13 @@ namespace WebShopProjectApp.Controllers
             {
                 User newUsr = new User()
                 {
-                    //TODO: Add fileds from user class.
                     UserName = userReg.UserName,
                     FirstName = userReg.FirstName,
                     LastName = userReg.LastName,
+                    StreetAdress = userReg.StreetAdress,
+                    StreetNumber = userReg.StreetNumber,
+                    PostalCode = userReg.PostalCode,
+                    City = userReg.City,
                     Email = userReg.Email,
                     PhoneNumber = userReg.Phone
                 };

@@ -9,8 +9,8 @@ namespace WebShopProjectApp.ViewModels
 {
     public class CreateOrder
     {
-        List<OrderItem> orderItems { get; set; }
-        User appUser { get; set; }
+        public List<OrderItem> Items { get; set; }
+        public User Customer { get; set; }
     }
 }
 

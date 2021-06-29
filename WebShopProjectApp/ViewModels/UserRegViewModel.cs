@@ -31,6 +31,15 @@ namespace WebShopProjectApp.ViewModels
         public string StreetNumber { get; set; }
 
         [Required]
+        [Display(Name = "Postal Code")]
+        [StringLength(10, MinimumLength = 5)]
+        public string PostalCode { get; set; }
+
+        [Required]
+        [StringLength(30, MinimumLength = 2)]
+        public string City { get; set; }
+
+        [Required]
         [StringLength(50, MinimumLength = 5)]
         public string Email { get; set; }
 

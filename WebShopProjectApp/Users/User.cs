@@ -39,5 +39,8 @@ namespace WebShopProjectApp.Users
         [Required]
         [StringLength(30, MinimumLength = 2)]
         public string City { get; set; }
+
+        public string Phone { get; set; }
+
     }
 }

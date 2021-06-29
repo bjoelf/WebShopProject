@@ -1,12 +1,11 @@
-﻿@model CreateUser
+﻿@model UserRegViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
 
-
-<h1>Add a product here!</h1>
+<h1>Add a customer manually here!</h1>
 
 <hr />
 <div class="row">
@@ -38,6 +37,26 @@
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
             </div>
 
             <div class="form-group">

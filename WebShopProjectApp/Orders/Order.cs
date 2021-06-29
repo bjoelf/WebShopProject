@@ -12,7 +12,7 @@ namespace WebShopProjectApp.Orders
     {
         [Key]
         public int Id { get; set; }
-        List<OrderItem> items { get; set; }
-        User Delivery { get; set; }
+        public List<OrderItem> items { get; set; }
+        public User Customer { get; set; }
     }
 }

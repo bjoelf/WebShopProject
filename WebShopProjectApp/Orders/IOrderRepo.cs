@@ -14,7 +14,7 @@ namespace WebShopProjectApp.Orders
         Order Create(Order order);
         Order Read(int id);
         List<Order> Read();
-        Order Edit(Order order);
+        Order Update(Order order);
         bool Delete(int id);
     }
 }

@@ -8,9 +8,9 @@ namespace WebShopProjectApp.Users
     public interface IUserRepo
     {
         User Create(User user);
-        User Read(int id);
+        User Read(string id);
         List<User> Read();
-        User Edit(User user);
-        bool Delete(int id);
+        User Update(User user);
+        bool Delete(string id);
     }
 }
