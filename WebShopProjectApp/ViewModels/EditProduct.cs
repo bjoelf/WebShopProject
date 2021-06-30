@@ -12,5 +12,10 @@ namespace WebShopProjectApp.ViewModels
     {
         public int Id { set; get; }
         public CreateProduct CreateProduct { set; get; }
+        public EditProduct(int id, CreateProduct createProduct)
+        {
+            this.CreateProduct = createProduct;
+            Id = id;
+        }
     }
 }

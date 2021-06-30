@@ -11,5 +11,12 @@ namespace WebShopProjectApp.ViewModels
         [Required]
         [MaxLength(100)]
         public string Description { get; set; }
+
+        public CreateProduct(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
+        public CreateProduct() { }
     }
 }

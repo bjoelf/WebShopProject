@@ -20,14 +20,14 @@ namespace WebShopProjectApp.Controllers
         // GET: OrderController
         public ActionResult Index()
         {
-            return View();
+            return View(_orderService.All());
         }
 
         // GET: OrderController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: OrderController/Create
         public ActionResult Create()
@@ -38,18 +38,17 @@ namespace WebShopProjectApp.Controllers
         // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateOrder createOrder)
         {
-            try
+            if (ModelState.IsValid)
             {
+                _orderService.Add(createOrder);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(createOrder);
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Order order = _orderService.FindById(id);
@@ -57,47 +56,35 @@ namespace WebShopProjectApp.Controllers
             if (order == null)
                 return RedirectToAction(nameof(Index));
 
-            CreateOrder co = new CreateOrder();
-            co.Items = order.items;
-
+            CreateOrder co = new CreateOrder(order.items,order.Customer);
             EditOrder editOrder = new EditOrder(id, co);
 
             return View(editOrder);
         }
-
-      
+              
         [HttpPost]
-        public IActionResult Edit(int id, CreateOrder order)
+        public IActionResult Edit(int ID, CreateOrder order)
         {
             if (ModelState.IsValid)
             {
-                Order o = _orderService.Edit(id, order);
+                Order o = _orderService.Edit(ID, order);
                 return RedirectToAction(nameof(Index));
             }
-
-            //TODO: Ändra här
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Edit), new { id = ID });
         }
 
         // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
+            Order order = _orderService.FindById(id);
 
-        // POST: OrderController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (order == null) 
+                return NotFound();
+
+            if (_orderService.Remove(id))
+                return Ok("order" + id);
+
+            return BadRequest();
         }
     }
 }

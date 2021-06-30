@@ -23,10 +23,10 @@ namespace WebShopProjectApp.Controllers
             return View(_productService.All());
         }
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         public IActionResult Create()
         {
@@ -53,30 +53,22 @@ namespace WebShopProjectApp.Controllers
             if (p == null)
                 return RedirectToAction(nameof(Index));
 
-            EditProduct editProduct = new EditProduct();
-            editProduct.Id = id;
-            editProduct.CreateProduct = new CreateProduct()
-            {
-                Name = p.Name,
-                Description = p.Description,
-            };
-            return View(editProduct);
+            CreateProduct cp = new CreateProduct(p.Name,p.Description);
+            EditProduct ep = new EditProduct(id, cp);
+
+            return View(ep);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CreateProduct createProduct)
+        public IActionResult Edit(int ID, CreateProduct createProduct)
         {
             if (ModelState.IsValid)
             {
-                Product p = _productService.Edit(id, createProduct);
+                Product p = _productService.Edit(ID, createProduct);
                 return RedirectToAction(nameof(Index));
             }
 
-            EditProduct editProduct = new EditProduct() {
-                Id = id,
-                CreateProduct = createProduct,
-            };
-            return View(editProduct);
+            return RedirectToAction(nameof(Edit), new { id = ID });
         }
 
         public IActionResult Delete(int id)
@@ -84,9 +76,10 @@ namespace WebShopProjectApp.Controllers
             Product p = _productService.FindById(id);
 
             if (p == null)
-            {
-                return Ok();
-            }
+                return NotFound();
+
+            if (_productService.Remove(id))
+                return Ok("product" + id);
 
             return BadRequest();
         }
