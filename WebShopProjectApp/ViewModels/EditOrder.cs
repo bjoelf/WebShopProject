@@ -10,7 +10,11 @@ namespace WebShopProjectApp.ViewModels
     public class EditOrder
     {
         public int Id { set; get; }
-        public CreateOrder CreateOrder { set; get; }
-        public User Customer { set; get; }
+        public CreateOrder createOrder { set; get; }
+        public EditOrder(int id, CreateOrder createOrder)
+        {
+            this.createOrder = createOrder;
+            Id = id;
+        }
     }
 }

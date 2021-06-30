@@ -11,7 +11,7 @@ namespace WebShopProjectApp.Users
     {
         User Add(UserRegViewModel userReg);
         List<User> All();
-        User FindById(int id);
-        User Edit(int id, UserRegViewModel userReg);
+        User FindById(string id);
+        User Edit(string id, UserRegViewModel userReg);
     }
 }

@@ -51,7 +51,7 @@ namespace WebShopProjectApp.Controllers
             Product p = _productService.FindById(id);
 
             if (p == null)
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
 
             EditProduct editProduct = new EditProduct();
             editProduct.Id = id;

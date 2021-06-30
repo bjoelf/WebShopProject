@@ -51,7 +51,7 @@ namespace WebShopProjectApp.Users
         {
             return _userRepo.Read();
         }
-        public User Edit(int id, UserRegViewModel userReg)
+        public User Edit(string id, UserRegViewModel userReg)
         {
             User u = FindById(id);
             if (u == null)
@@ -71,7 +71,7 @@ namespace WebShopProjectApp.Users
 
             return u;
         }
-        public User FindById(int id)
+        public User FindById(string id)
         {
             return _userRepo.Read(id);
         }

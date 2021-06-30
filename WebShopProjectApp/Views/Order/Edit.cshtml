@@ -10,11 +10,17 @@
 
 <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
 
-    <label asp-for="Customer.FirstName"></label>
-    <label asp-for="Customer.LastName"></label>
-    <label asp-for="Customer.UserName"></label>
+    @*
+        <label asp-for="Customer.FirstName"></label>
+        <label asp-for="Customer.LastName"></label>
+        <label asp-for="Customer.UserName"></label>
+    *@
+
+    @foreach (var item in Model.createOrder.Items)
+    {
 
 
+    }
 
     <input type="submit" value="Save" />
     @* <button>Save</button> *@

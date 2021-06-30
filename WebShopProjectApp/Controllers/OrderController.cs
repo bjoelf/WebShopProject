@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using WebShopProjectApp.Orders;
+using WebShopProjectApp.ViewModels;
 
 namespace WebShopProjectApp.Controllers
 {
@@ -48,25 +50,33 @@ namespace WebShopProjectApp.Controllers
             }
         }
 
-        // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            return View();
+            Order order = _orderService.FindById(id);
+
+            if (order == null)
+                return RedirectToAction(nameof(Index));
+
+            CreateOrder co = new CreateOrder();
+            co.Items = order.items;
+
+            EditOrder editOrder = new EditOrder(id, co);
+
+            return View(editOrder);
         }
 
-        // POST: OrderController/Edit/5
+      
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, CreateOrder order)
         {
-            try
+            if (ModelState.IsValid)
             {
+                Order o = _orderService.Edit(id, order);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            //TODO: Ändra här
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: OrderController/Delete/5

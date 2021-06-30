@@ -21,13 +21,11 @@ namespace WebShopProjectApp.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
         // GET: AdminController
         public IActionResult Index()
         {
             return View();
         }
-
         // GET: AdminController/Details/5
         public IActionResult UserList()
         {
@@ -42,13 +40,11 @@ namespace WebShopProjectApp.Controllers
 
             return View(userFound);
         }
-
         // GET: AdminController/Create
         public ActionResult Create()
         {
             return View();
         }
-
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
