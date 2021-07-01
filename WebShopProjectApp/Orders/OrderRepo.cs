@@ -35,6 +35,10 @@ namespace WebShopProjectApp.Orders
         {
             return _dBContext.Orders.Find(id);
         }
+        public List<Order> ReadCustomer(string customerId)
+        {
+            return _dBContext.Orders.Where(ci => ci.Customer.Id.Equals(customerId)).ToList();
+        }
         public Order Update(Order order)
         {
             Order o = Read(order.Id);

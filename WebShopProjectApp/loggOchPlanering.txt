@@ -1,0 +1,8 @@
+﻿
+Views/Order/Edit.cshtml behöver jobb.
+
+Views/Shared/OrderITemRow.cshtml
+Behöver implementeras och integreras med Edit.cshtml
+
+API Controllern
+Behöver implementeras 

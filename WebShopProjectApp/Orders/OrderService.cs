@@ -32,6 +32,10 @@ namespace WebShopProjectApp.Orders
         {
             return _orderRepo.Read(id);
         }
+        public List<Order> FindByCustomer(string customerId)
+        {
+            return _orderRepo.ReadCustomer(customerId);
+        }
         public Order Edit(int id, CreateOrder createOrder)
         {
             Order o = FindById(id);

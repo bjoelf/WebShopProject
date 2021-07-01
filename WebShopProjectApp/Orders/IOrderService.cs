@@ -11,6 +11,7 @@ namespace WebShopProjectApp.Orders
         Order Add(CreateOrder createOrder);
         List<Order> All();
         Order FindById(int id);
+        List<Order> FindByCustomer(string customerId);
         Order Edit(int id, CreateOrder createOrder);
         bool Remove(int id);
     }
