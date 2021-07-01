@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebShopProjectApp.ViewModels
 {
-    public class UserRegViewModel
+    public class RegisterUser
     {
         [Required]
         [StringLength(30, MinimumLength =5)]

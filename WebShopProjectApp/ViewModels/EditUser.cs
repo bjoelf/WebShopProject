@@ -9,6 +9,6 @@ namespace WebShopProjectApp.ViewModels
     public class EditUser
     {
         public string Id { set; get; }
-        public UserRegViewModel regUser { set; get; }
+        public RegisterUser regUser { set; get; }
     }
 }

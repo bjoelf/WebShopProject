@@ -21,7 +21,7 @@ namespace WebShopProjectApp.Users
             _roleManager = roleManager;
             _userManager = User;
         }
-        public User Add(UserRegViewModel userReg)
+        public User Add(RegisterUser userReg)
         {
             User u = new User() {
                 UserName = userReg.UserName,
@@ -51,7 +51,7 @@ namespace WebShopProjectApp.Users
         {
             return _userRepo.Read();
         }
-        public User Edit(string id, UserRegViewModel userReg)
+        public User Edit(string id, RegisterUser userReg)
         {
             User u = FindById(id);
             if (u == null)

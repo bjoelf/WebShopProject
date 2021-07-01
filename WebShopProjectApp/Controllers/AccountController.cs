@@ -31,7 +31,7 @@ namespace WebShopProjectApp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UserRegViewModel userReg)
+        public async Task<IActionResult> Register(RegisterUser userReg)
         {
             if (ModelState.IsValid)
             {

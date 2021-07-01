@@ -56,29 +56,35 @@ namespace WebShopProjectApp.Controllers
             if (order == null)
                 return RedirectToAction(nameof(Index));
 
-            CreateOrder co = new CreateOrder(order.items,order.Customer);
+            CreateOrder co = new CreateOrder(order.items, order.Customer);
             EditOrder editOrder = new EditOrder(id, co);
 
             return View(editOrder);
         }
-              
+
         [HttpPost]
         public IActionResult Edit(int ID, CreateOrder order)
         {
             if (ModelState.IsValid)
             {
                 Order o = _orderService.Edit(ID, order);
+                if (o == null)
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+
                 return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Edit), new { id = ID });
+
+            EditOrder editOrder = new EditOrder(ID, order);
+            return View(editOrder);
         }
+
 
         // GET: OrderController/Delete/5
         public IActionResult Delete(int id)
         {
             Order order = _orderService.FindById(id);
 
-            if (order == null) 
+            if (order == null)
                 return NotFound();
 
             if (_orderService.Remove(id))

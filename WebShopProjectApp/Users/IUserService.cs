@@ -9,9 +9,9 @@ namespace WebShopProjectApp.Users
 {
     public interface IUserService
     {
-        User Add(UserRegViewModel userReg);
+        User Add(RegisterUser userReg);
         List<User> All();
         User FindById(string id);
-        User Edit(string id, UserRegViewModel userReg);
+        User Edit(string id, RegisterUser userReg);
     }
 }
