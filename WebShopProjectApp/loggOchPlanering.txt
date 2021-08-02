@@ -6,3 +6,17 @@ Behöver implementeras och integreras med Edit.cshtml
 
 API Controllern
 Behöver implementeras 
+
+
+Kan skapa edi order utan partial...
+Men snyggt med partial om det anväds på flera ställen...
+(DRY)
+
+Parial:
+Ska ligga i Shared!! (Om den delas av flera controller!)
+Om den bara anväds av en view/controller behöver den inte ligga i Shared mappen.
+
+Underscore behövs inte. Är bara en kodningsstandard.
+
+
+

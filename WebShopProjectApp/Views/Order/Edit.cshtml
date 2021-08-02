@@ -10,11 +10,13 @@
 
 <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
 
-    @*
-        <label asp-for="Customer.FirstName"></label>
-        <label asp-for="Customer.LastName"></label>
-        <label asp-for="Customer.UserName"></label>
-    *@
+
+    <label asp-for="createOrder.Customer.FirstName"></label>
+    <label asp-for="createOrder.Customer.LastName"></label>
+    <label asp-for="createOrder.Customer.UserName"></label>
+
+    <!--Table of order items-->
+
 
     @foreach (var item in Model.createOrder.Items)
     {

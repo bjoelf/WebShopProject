@@ -77,7 +77,7 @@ namespace WebShopProjectApp.Api
         #region Products
 
         [HttpGet("/api/Products")]
-        [Authorize]
+        //[Authorize]
         public ActionResult<IEnumerable<Product>> GetProducts()
         {
             List<Product> pl = _productService.All();
