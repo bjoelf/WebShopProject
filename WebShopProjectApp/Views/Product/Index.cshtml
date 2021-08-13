@@ -22,11 +22,13 @@
         {
             @foreach (var prod in Model)
             {
-                <tr>
-                    <td>@prod.Name</td>
-                    <td>@prod.Description</td>
-                    <td> <a asp-action="Edit" asp-controller="Product" asp-route-id="@prod.Id">Edit</a> </td>
-                </tr>
+        <tr>
+            <td>@prod.Name</td>
+            <td>@prod.Description</td>
+            <td>@prod.Price</td>
+
+            <td> <a asp-action="Edit" asp-controller="Product" asp-route-id="@prod.Id">Edit</a> </td>
+        </tr>
                 }
             }
         </tbody>

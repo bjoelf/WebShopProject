@@ -37,6 +37,7 @@ namespace WebShopProjectApp.Products
 
             p.Name = cp.Name;
             p.Description = cp.Description;
+            p.Price = cp.Price;
 
             p = _productRepo.Update(p);
 

@@ -53,7 +53,7 @@ namespace WebShopProjectApp.Controllers
             if (p == null)
                 return RedirectToAction(nameof(Index));
 
-            CreateProduct cp = new CreateProduct(p.Name,p.Description);
+            CreateProduct cp = new CreateProduct(p.Name,p.Description, p.Price);
             EditProduct ep = new EditProduct(id, cp);
 
             return View(ep);
