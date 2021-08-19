@@ -27,8 +27,7 @@ namespace WebShopProjectApp.Api
         private readonly IUserService _userService;
         private readonly SignInManager<User> _signInManager;
 
-        public ApiController(IOrderService orderService, IProductService productService, IUserService userService, SignInManager<User> signInManager
-            )
+        public ApiController(IOrderService orderService, IProductService productService, IUserService userService, SignInManager<User> signInManager)
         {
             _orderService = orderService;
             _productService = productService;
@@ -38,7 +37,7 @@ namespace WebShopProjectApp.Api
 
         #region Users (Customers)
 
-        [HttpPost]
+        [HttpPost("/api/RegUser")]
         public async Task<ActionResult<User>> Post([FromBody] RegisterUser newCustomer)
         {
             if (!ModelState.IsValid)
@@ -58,7 +57,7 @@ namespace WebShopProjectApp.Api
             return Created("", newCustomer);
         }
 
-        [HttpPut]
+        [HttpPut("/api/EditUser")]
         [Authorize]
         public ActionResult<User> Edit([FromBody] EditUser editUser)
         {

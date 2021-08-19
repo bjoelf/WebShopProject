@@ -25,10 +25,10 @@ namespace WebShopProjectApp.Controllers
     [ApiController]
     public class JwtController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public JwtController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IConfiguration configuration)
+        private readonly SignInManager<User> _signInManager;
+        public JwtController(SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration configuration)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -47,7 +47,7 @@ namespace WebShopProjectApp.Controllers
                 {
                     return Unauthorized();
                 }
-                IdentityUser user = await _userManager.FindByNameAsync(jwtLogin.UserName);
+                User user = await _userManager.FindByNameAsync(jwtLogin.UserName);
                 IList<string> userRoles = await _userManager.GetRolesAsync(user);
                 //ToDo token gen
                 JwtSecurityToken jwtTokenData = GenerateJwtToken(user, userRoles);
@@ -61,12 +61,12 @@ namespace WebShopProjectApp.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult Test()
+        public async Task<IActionResult> Test()
         {
             return Ok("It works");
         }
 
-        private JwtSecurityToken GenerateJwtToken(IdentityUser user, IList<string> userRoles)
+        private JwtSecurityToken GenerateJwtToken(User user, IList<string> userRoles)
         {
             List<Claim> claims = User.Claims.ToList();
 
