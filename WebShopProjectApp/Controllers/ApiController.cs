@@ -38,23 +38,25 @@ namespace WebShopProjectApp.Api
         #region Users (Customers)
 
         [HttpPost("/api/RegUser")]
-        public async Task<ActionResult<User>> Post([FromBody] RegisterUser newCustomer)
+        public async Task<ActionResult<User>> Post([FromBody] RegisterUser userReg)
         {
             if (!ModelState.IsValid)
-                return BadRequest(newCustomer);
+                return BadRequest(userReg);
             else
             {
-                User u = _userService.Add(newCustomer);
-                Microsoft.AspNetCore.Identity.SignInResult res = await _signInManager.PasswordSignInAsync(newCustomer.UserName, newCustomer.Password, false, false);
+                User u = await _userService.Add(userReg);
+                Microsoft.AspNetCore.Identity.SignInResult res = await _signInManager.PasswordSignInAsync(userReg.UserName, userReg.Password, false, false);
 
                 //TODO: Make sure this is Shop homepage.
+                // changed to return Created("", u);
                 if (res.Succeeded)
-                    return RedirectToAction("Index", "Home");
+                    return Created("", u);
 
                 if (res.IsLockedOut)
-                    ModelState.AddModelError("Locked out!", "Too many attemts");
+                    //ModelState.AddModelError("Locked out!", "Too many attemts");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
             }
-            return Created("", newCustomer);
+            return Created("", userReg);
         }
 
         [HttpPut("/api/EditUser")]

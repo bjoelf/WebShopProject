@@ -9,7 +9,7 @@ namespace WebShopProjectApp.Users
 {
     public interface IUserService
     {
-        User Add(RegisterUser userReg);
+        Task<User> Add(RegisterUser userReg);
         List<User> All();
         User FindById(string id);
         User Edit(string id, RegisterUser userReg);

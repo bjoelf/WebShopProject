@@ -21,7 +21,7 @@ namespace WebShopProjectApp.Users
             _roleManager = roleManager;
             _userManager = User;
         }
-        public User Add(RegisterUser userReg)
+        public async Task<User> Add(RegisterUser userReg)
         {
             User u = new User() {
                 UserName = userReg.UserName,
@@ -37,7 +37,9 @@ namespace WebShopProjectApp.Users
 
             try
             {
-                IdentityResult resultUser = _userManager.CreateAsync(u, userReg.Password).Result;
+                IdentityResult resultUser = await _userManager.CreateAsync(u, userReg.Password);
+
+                //TODO:  Det smäller här!
                 resultUser = _userManager.AddToRoleAsync(u, "User").Result;
             } 
             catch 

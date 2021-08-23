@@ -16,11 +16,13 @@ namespace WebShopProjectApp.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IUserService _userService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IUserService userService )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -33,27 +35,22 @@ namespace WebShopProjectApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterUser userReg)
         {
-            if (ModelState.IsValid)
+           // userReg.UserName = userReg.Email;
+
+            if (!ModelState.IsValid)
+                return BadRequest(userReg);
+            else
             {
-                User newUsr = new User()
-                {
-                    UserName = userReg.UserName,
-                    FirstName = userReg.FirstName,
-                    LastName = userReg.LastName,
-                    StreetAdress = userReg.StreetAdress,
-                    StreetNumber = userReg.StreetNumber,
-                    PostalCode = userReg.PostalCode,
-                    City = userReg.City,
-                    Email = userReg.Email,
-                    PhoneNumber = userReg.Phone
-                };
-                IdentityResult res = await _userManager.CreateAsync(newUsr, userReg.Password);
+                User u = await _userService.Add(userReg);
+              
+                // Koden körs i UserService.cs
+                //  IdentityResult res = await _userManager.CreateAsync(u, userReg.Password);
 
-                if (res.Succeeded)
-                    return RedirectToAction("Index", "Home");
+                //if (res.Succeeded)
+                //    return RedirectToAction("Index", "Home");
 
-                foreach (var item in res.Errors)
-                    ModelState.AddModelError(item.Code, item.Description);
+                //foreach (var item in res.Errors)
+                //    ModelState.AddModelError(item.Code, item.Description);
             }
             return View(userReg);
         }
