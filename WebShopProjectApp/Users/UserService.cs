@@ -39,15 +39,23 @@ namespace WebShopProjectApp.Users
             {
                 IdentityResult resultUser = await _userManager.CreateAsync(u, userReg.Password);
 
-                //TODO:  Det smäller här!
+                //TODO:  Kolla success innan roll tilldelning!
+
+
                 resultUser = _userManager.AddToRoleAsync(u, "User").Result;
+                //det blir inten exeption här...
+                //Kolla resultUser status innan gå vidare....
             } 
             catch 
             {
                 throw new Exception($"Faild to create user:  {u.FirstName}  {u.LastName}");
             }
 
+            //TODO: ändra retur data format.
+            //Returnera username = email??
             return _userRepo.Create(u);
+
+
         }
         public List<User> All()
         {

@@ -1,0 +1,43 @@
+﻿@model EditUser
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit a user</h1>
+
+@* User!  *@
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+
+    <label asp-for="regUser.FirstName"></label>
+    <input asp-for="regUser.FirstName" placeholder="Name" />
+    <span asp-validation-for="regUser.FirstName"></span>
+
+    <label asp-for="regUser.LastName"></label>
+    <input asp-for="regUser.LastName" placeholder="Name" />
+    <span asp-validation-for="regUser.LastName"></span>
+
+    <label asp-for="regUser.StreetAdress"></label>
+    <input asp-for="regUser.StreetAdress" placeholder="Name" />
+    <span asp-validation-for="regUser.StreetAdress"></span>
+
+    <label asp-for="regUser.StreetNumber"></label>
+    <input asp-for="regUser.StreetNumber" placeholder="Name" />
+    <span asp-validation-for="regUser.StreetNumber"></span>
+
+    <label asp-for="regUser.PostalCode"></label>
+    <input asp-for="regUser.PostalCode" placeholder="Name" />
+    <span asp-validation-for="regUser.PostalCode"></span>
+
+    <label asp-for="regUser.City"></label>
+    <input asp-for="regUser.City" placeholder="Name" />
+    <span asp-validation-for="regUser.City"></span>
+
+    <input type="submit" value="Save" />
+    @* <button>Save</button> *@
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
