@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
 
 using WebShopProjectApp.Orders;
 using WebShopProjectApp.Products;
 using WebShopProjectApp.Users;
 using WebShopProjectApp.ViewModels;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,13 +29,15 @@ namespace WebShopProjectApp.Api
         private readonly IProductService _productService;
         private readonly IUserService _userService;
         private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public ApiController(IOrderService orderService, IProductService productService, IUserService userService, SignInManager<User> signInManager)
+        public ApiController(IOrderService orderService, IProductService productService, IUserService userService, SignInManager<User> signInManager, UserManager<User> userManager)
         {
             _orderService = orderService;
             _productService = productService;
             _userService = userService;
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         #region Users (Customers)
@@ -90,9 +95,24 @@ namespace WebShopProjectApp.Api
         #region Orders
 
         [HttpPost("/api/Order")]
-        [Authorize]
-        public ActionResult<Order> Post([FromBody] CreateOrder createOrder)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<Order>> Post(CreateOrder createOrder)
         {
+            if (createOrder.Customer == null)
+            {
+                string id = null;
+                foreach (var item in User.Claims)
+                {
+                    if (item.Type == ClaimTypes.NameIdentifier)
+                    {
+                        id = item.Value;
+                        break;
+                    }
+                }
+                User u = await _userManager.FindByNameAsync(id);
+                createOrder.Customer = u;
+            }
+
             if (!ModelState.IsValid)
                 return BadRequest(createOrder);
 
