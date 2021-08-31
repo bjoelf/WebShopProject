@@ -120,7 +120,9 @@ namespace WebShopProjectApp.Api
             if (o == null)
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
-            return Created("", o);
+            o.Customer = null;
+
+            return Created("",o);
         }
 
         [Authorize]

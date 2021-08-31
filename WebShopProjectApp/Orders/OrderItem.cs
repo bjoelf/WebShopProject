@@ -11,9 +11,9 @@ namespace WebShopProjectApp.Orders
     {
         [Key]
         public int Id { get; set; }
-        Product Product { get; set; }
-        decimal Quantity { get; set; }
-        
-        decimal Price { get; set; }
+        public int ProductId { get; set; }
+        public decimal Quantity { get; set; }
+
+        public decimal Price { get; set; }
     }
 }
